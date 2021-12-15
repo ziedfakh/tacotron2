@@ -48,7 +48,7 @@ class TextMelLoader(torch.utils.data.Dataset):
         else:
             filename=filename.replace(".wav",".npy")
             print(filename)
-            melspec = torch.from_numpy(np.load(filename))
+            melspec = torch.from_numpy(np.load(filename,allow_pickle=True))
             assert melspec.size(0) == self.stft.n_mel_channels, (
                 'Mel dimension mismatch: given {}, expected {}'.format(
                     melspec.size(0), self.stft.n_mel_channels))
