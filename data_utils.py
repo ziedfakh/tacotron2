@@ -46,7 +46,8 @@ class TextMelLoader(torch.utils.data.Dataset):
             melspec = self.stft.mel_spectrogram(audio_norm)
             melspec = torch.squeeze(melspec, 0)
         else:
-            filename=filename.replace(".wav",".npy")
+            filename=filename.replace(".wav","")
+            filename = filename+".npy"
             #print(filename)
             melspec = torch.from_numpy(np.load(filename,allow_pickle=True))
             assert melspec.size(0) == self.stft.n_mel_channels, (
